@@ -13,6 +13,10 @@
     <select id="getAllRates" resultMap="RateResultMap">
         select id, date, value from rate
     </select>
+    
+    <delete id="deleteAllRates">
+        delete from rate
+    </delete>
  
     <insert id="addRate" parameterType="Rate" useGeneratedKeys="true" keyProperty="id">
         insert into rate(date,value) values(#{date},#{value})

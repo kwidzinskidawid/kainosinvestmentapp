@@ -23,7 +23,6 @@ public class CSVReaderImpl implements CSVReader{
 		String line = "";
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 
-		int count = 0;
 		try {
 
 			br = new BufferedReader(new FileReader(filePath));
@@ -37,10 +36,6 @@ public class CSVReaderImpl implements CSVReader{
 				newRate.setValue(Float.parseFloat(rate[1]));
 				
 				result.add(newRate);
-				count++;
-				if(count > 20)
-					break;
-
 			}
 			
 			br.close();
