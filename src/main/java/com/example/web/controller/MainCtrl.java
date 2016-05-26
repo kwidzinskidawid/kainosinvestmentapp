@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.Rate;
-import com.example.service.CSVReaderImpl;
+import com.example.mappers.RateMapper;
 
 @RestController	
 public class MainCtrl {
 	
 	@Autowired
-	CSVReaderImpl csvReader;
+	private RateMapper rateMapper;
 
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public ResponseEntity<List<Rate>> test(){
-		List<Rate> rates = CSVReaderImpl.readFromFile("/Users/Dave/workspace/InvestmentFund/src/main/resources/data.csv");
+		List<Rate> rates = rateMapper.getAllRates();
 		return new ResponseEntity<List<Rate>>(rates, HttpStatus.OK);
 	}
 	

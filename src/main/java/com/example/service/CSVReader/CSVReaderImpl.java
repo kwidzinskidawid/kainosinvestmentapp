@@ -1,4 +1,4 @@
-package com.example.service;
+package com.example.service.CSVReader;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -15,7 +15,8 @@ import com.example.domain.Rate;
 
 @Service
 public class CSVReaderImpl implements CSVReader{
-	public static List<Rate> readFromFile(String filePath) {
+	@Override
+	public List<Rate> readFromFile(String filePath) {
 		List<Rate> result = new ArrayList<Rate>();
 		
 		BufferedReader br = null;

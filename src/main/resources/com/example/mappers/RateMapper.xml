@@ -1,0 +1,20 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.example.mappers.RateMapper">
+ 
+    <resultMap id="RateResultMap" type="Rate">
+        <id column="id" property="id" />
+        <result column="date" property="date" />
+        <result column="value" property="value" />
+    </resultMap>
+ 
+    <select id="getAllRates" resultMap="RateResultMap">
+        select id, date, value from rate
+    </select>
+ 
+    <insert id="addRate" parameterType="Rate" useGeneratedKeys="true" keyProperty="id">
+        insert into rate(date,value) values(#{date},#{value})
+    </insert>
+</mapper>

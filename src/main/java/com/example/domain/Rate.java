@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Rate {
 
+	private Integer id;
+	 
 	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date date;
 	
@@ -18,6 +20,12 @@ public class Rate {
 	public Rate(Date date, float value) {
 		this.date = date;
 		this.value = value;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public Date getDate() {
 		return date;
