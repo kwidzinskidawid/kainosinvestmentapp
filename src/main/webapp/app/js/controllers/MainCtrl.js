@@ -1,15 +1,29 @@
 'use strict';
 
 invApp
-	.controller('MainCtrl', function() {
+	.controller('MainCtrl', function(NgTableParams, $scope) {
+
+		
 		$.getJSON('/api/rates', function (rates) {
-			var col = [];
-			var row = [];
+			var cols = [];
+			var rows = [];
 			
+			var pattern = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
 			_.each(rates, function (rate) {
-				col.push(rate.date);
-				row.push(rate.value);
+				cols.push(rate.date);
+				rows.push(rate.value);
+				
+				var arrayDate = rate.date.match(pattern);
+				rate.dateType = new Date(arrayDate[3], arrayDate[2] - 1, arrayDate[1]);
 			});
+			
+			$scope.tableParams = new NgTableParams({
+			      page: 1, // show first page
+			      count: 10 // count per page
+			    }, {
+			      filterDelay: 0,
+			      data: rates
+			    });
 			
 			$('#chart').highcharts({
 	            chart: {
@@ -23,7 +37,7 @@ invApp
 	                        'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
 	            },
 	            xAxis: {
-	                categories: col
+	                categories: cols
 	            },
 	            yAxis: {
 	                title: {
@@ -63,7 +77,7 @@ invApp
 	            series: [{
 	                type: 'area',
 	                name: 'Unit Value',
-	                data: row
+	                data: rows
 	            }]
 	        });
 		});

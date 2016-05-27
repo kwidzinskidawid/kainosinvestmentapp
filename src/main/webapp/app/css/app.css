@@ -3,8 +3,13 @@
 .wrapper {
 	width: 80%;
 	margin: auto;
+	text-align: center;
 }
 
+.tableWrapper {
+	width: 400px;
+	display: inline-block;
+}
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;

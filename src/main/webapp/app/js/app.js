@@ -1,6 +1,6 @@
 'use strict';
 
-var invApp = angular.module('invApp', ['ui.router']);
+var invApp = angular.module('invApp', ['ui.router', 'ngTable']);
 
 invApp.config(['$stateProvider', '$urlRouterProvider', 
                function($stateProvider, $urlRouterProvider) {

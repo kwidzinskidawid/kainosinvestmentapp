@@ -1,1 +1,12 @@
 <div id="chart"></div>
+
+<div class="tableWrapper">
+	<table ng-table="tableParams" class="table">
+	    <tr ng-repeat="rate in $data">
+	        <td title="'Date'" sortable="'dateType'">
+	            {{rate.date}}</td>
+	        <td title="'Value'" sortable="'value'">
+	            {{rate.value}}</td>
+	    </tr>
+	</table>
+</div>
