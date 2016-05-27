@@ -10,6 +10,11 @@
     "jquery": "^2.2.4",
     "highcharts": "^4.2.5",
     "ng-table": "^0.8.3",
-    "bootstrap": "^3.3.6"
+    "bootstrap": "^3.3.6",
+    "angular-resource": "^1.5.5",
+    "ZingChart-AngularJS": "zingchart-angularjs#^1.0.7",
+    "angular-chart.js": "^0.10.2",
+    "angular-strap": "^2.3.8",
+    "components-font-awesome": "^4.6.3"
   }
 }

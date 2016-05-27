@@ -7,9 +7,14 @@
 }
 
 .tableWrapper {
-	width: 400px;
+	width: 600px;
 	display: inline-block;
 }
+#datepickerForm {
+	margin-bottom: 40px;
+	margin-top: 40px;
+}
+	
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;

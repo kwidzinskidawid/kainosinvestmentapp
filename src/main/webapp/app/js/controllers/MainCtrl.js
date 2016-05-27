@@ -1,20 +1,20 @@
 'use strict';
 
 invApp
-	.controller('MainCtrl', function(NgTableParams, $scope) {
-
+	.controller('MainCtrl', function(NgTableParams, $scope, RateService, ChartService) {
+		var dates = [];
+		var values = [];
 		
-		$.getJSON('/api/rates', function (rates) {
-			var cols = [];
-			var rows = [];
-			
+
+		var rates = RateService.query(function() {
+
 			var pattern = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
 			_.each(rates, function (rate) {
-				cols.push(rate.date);
-				rows.push(rate.value);
+				dates.push(rate.date);
+				values.push(rate.value);
 				
 				var arrayDate = rate.date.match(pattern);
-				rate.dateType = new Date(arrayDate[3], arrayDate[2] - 1, arrayDate[1]);
+				rate.dateJS = new Date(arrayDate[3], arrayDate[2] - 1, arrayDate[1]);
 			});
 			
 			$scope.tableParams = new NgTableParams({
@@ -25,60 +25,16 @@ invApp
 			      data: rates
 			    });
 			
-			$('#chart').highcharts({
-	            chart: {
-	                zoomType: 'x'
-	            },
-	            title: {
-	                text: "Investment fund's unit value over time"
-	            },
-	            subtitle: {
-	                text: document.ontouchstart === undefined ?
-	                        'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-	            },
-	            xAxis: {
-	                categories: cols
-	            },
-	            yAxis: {
-	                title: {
-	                    text: 'Unit value (PLN)'
-	                }
-	            },
-	            legend: {
-	                enabled: false
-	            },
-	            plotOptions: {
-	                area: {
-	                    fillColor: {
-	                        linearGradient: {
-	                            x1: 0,
-	                            y1: 0,
-	                            x2: 0,
-	                            y2: 1
-	                        },
-	                        stops: [
-	                            [0, Highcharts.getOptions().colors[0]],
-	                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-	                        ]
-	                    },
-	                    marker: {
-	                        radius: 2
-	                    },
-	                    lineWidth: 1,
-	                    states: {
-	                        hover: {
-	                            lineWidth: 1
-	                        }
-	                    },
-	                    threshold: null
-	                }
-	            },
-
-	            series: [{
-	                type: 'area',
-	                name: 'Unit Value',
-	                data: rows
-	            }]
-	        });
+			ChartService.generate(dates, values);
+			$scope.fromDate = $scope.minDate = rates[0].dateJS;
+			$scope.toDate = $scope.maxDate = rates[rates.length - 1].dateJS;
 		});
+		
+
+
+		
+		$scope.change = function() {
+			console.log($scope.fromDate);
+			console.log($scope.toDate);
+		}
 	});

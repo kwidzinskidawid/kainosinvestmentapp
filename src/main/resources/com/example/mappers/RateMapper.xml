@@ -14,6 +14,12 @@
         select id, date, value from rate
     </select>
     
+    <select id="getAllRatesInDateRange" resultMap="RateResultMap">
+    <![CDATA[
+        select id, date, value from rate where "rate.date >= #{from}" and "rate.date <= #{to}"
+        ]]>
+    </select>
+    
     <delete id="deleteAllRates">
         delete from rate
     </delete>

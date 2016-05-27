@@ -1,8 +1,9 @@
 'use strict';
 
-var invApp = angular.module('invApp', ['ui.router', 'ngTable']);
+var invApp = angular.module('invApp', ['ui.router', 'ngTable', 'ngResource', 'mgcrea.ngStrap']);
 
-invApp.config(['$stateProvider', '$urlRouterProvider', 
+invApp
+	.config(['$stateProvider', '$urlRouterProvider', 
                function($stateProvider, $urlRouterProvider) {
 	
 	  $stateProvider
@@ -19,3 +20,12 @@ invApp.config(['$stateProvider', '$urlRouterProvider',
   
 	  $urlRouterProvider.otherwise('/');
 }]);
+
+invApp
+	.config(function($datepickerProvider) {
+	  angular.extend($datepickerProvider.defaults, {
+	    dateFormat: 'dd/MM/yyyy',
+	    startWeek: 1,
+	    autoclose: true
+	  });
+	})
