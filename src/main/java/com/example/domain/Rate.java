@@ -9,7 +9,7 @@ public class Rate {
 
 	private Integer id;
 	 
-	@JsonFormat(pattern="dd/MM/yyyy")
+	
 	private Date date;
 	
 	private float value;

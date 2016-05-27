@@ -2,7 +2,13 @@
 
 invApp
 	.factory('RateService', function($resource) {
-		 return $resource('/api/rates/:rate');
+		 return $resource('/api/rates/', {}, {
+			 getRatesInDateRange: {
+				 url: '/api/rates/range',
+				 isArray: true,
+				 method: 'POST'
+			 }
+		 });
 	});
 
 invApp

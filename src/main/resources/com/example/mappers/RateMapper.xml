@@ -16,7 +16,7 @@
     
     <select id="getAllRatesInDateRange" resultMap="RateResultMap">
     <![CDATA[
-        select id, date, value from rate where "rate.date >= #{from}" and "rate.date <= #{to}"
+        select id, date, value from rate where rate.date >= #{from} and rate.date <= #{to}
         ]]>
     </select>
     

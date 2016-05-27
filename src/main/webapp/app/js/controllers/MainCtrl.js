@@ -5,36 +5,43 @@ invApp
 		var dates = [];
 		var values = [];
 		
-
-		var rates = RateService.query(function() {
-
-			var pattern = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
-			_.each(rates, function (rate) {
+		
+		var initRates = RateService.query(function() {
+			init(initRates);
+		});
+		
+		
+	
+		$scope.change = function() {
+		    RateService.getRatesInDateRange({from: $scope.fromDate, to: $scope.toDate}, function (data) {
+		    	init(data);
+		    });
+		}
+		
+		var init = function(data) {
+			dates = [];
+			values = [];
+			
+			_.each(data, function (rate) {
+				rate.dateJS = new Date(rate.date);
+				rate.date = rate.dateJS.toLocaleDateString().replace(/\./g,"/");
 				dates.push(rate.date);
 				values.push(rate.value);
-				
-				var arrayDate = rate.date.match(pattern);
-				rate.dateJS = new Date(arrayDate[3], arrayDate[2] - 1, arrayDate[1]);
 			});
-			
+			console.log(data);
 			$scope.tableParams = new NgTableParams({
-			      page: 1, // show first page
-			      count: 10 // count per page
+			      page: 1, 
+			      count: 10 
 			    }, {
 			      filterDelay: 0,
-			      data: rates
+			      data: data
 			    });
 			
 			ChartService.generate(dates, values);
-			$scope.fromDate = $scope.minDate = rates[0].dateJS;
-			$scope.toDate = $scope.maxDate = rates[rates.length - 1].dateJS;
-		});
-		
-
-
-		
-		$scope.change = function() {
-			console.log($scope.fromDate);
-			console.log($scope.toDate);
-		}
+			if ($scope.fromDate == undefined && $scope.toDate == undefined) {
+				$scope.fromDate = $scope.minDate = data[0].dateJS;
+				$scope.toDate = $scope.maxDate = data[data.length - 1].dateJS;
+			}
+			
+		};
 	});
