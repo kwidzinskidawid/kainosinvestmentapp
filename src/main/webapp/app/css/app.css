@@ -1,7 +1,7 @@
 /* app css stylesheet */
 
 .wrapper {
-	width: 80%;
+	max-width: 1500px;
 	margin: auto;
 	text-align: center;
 }
@@ -10,13 +10,19 @@
 	width: 600px;
 	display: inline-block;
 }
+.pagination {
+	display: block;
+	clear: both;
+	padding-top: 15px;
+	padding-left: 100px;
+
+}
+.error-msg {
+	color: red;
+}
 #datepickerForm {
 	margin-bottom: 2.5em;
 	margin-top: 2.5em;
-}
-
-.error-msg {
-	color: red;
 }
 #datepickerForm input {
 	cursor: pointer;
