@@ -6,13 +6,17 @@
 	text-align: center;
 }
 
+#chart {
+	position: relative;
+}
+
 .tableWrapper {
 	width: 600px;
 	display: inline-block;
 }
 #datepickerForm {
-	margin-bottom: 40px;
-	margin-top: 40px;
+	margin-bottom: 2.5em;
+	margin-top: 2.5em;
 }
 
 .error-msg {
@@ -22,38 +26,40 @@
 	cursor: pointer;
 }
 #datepickerForm input, #investmentForm input{
-	margin-right: 10px;
+	margin-right: 1em;
 }
 
 #calculateBtn {
-	margin: 20px;
+	margin: 1.5em;
 }
 	
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
   margin-bottom: 2em;
-  padding: 0 0 0.5em;
-}
-
-.menu:before {
-  content: "[";
-}
-
-.menu:after {
-  content: "]";
+  display: block;
+  padding: 1em;
 }
 
 .menu > li {
-  display: inline;
+  display: inline-block;
+  margin-left: 5em;
+  margin-right: 5em;
 }
 
-.menu > li:before {
-  content: "|";
-  padding-right: 0.3em;
+.menu a {
+	padding: 0.4em 0.7em 0.4em 0.7em;
+	background-color: #6C7A89;
+	border-radius: 0.3em;
+	font-family: Dosis, sans-serif;
+	font-size: 1.3em;
+	color: white;
 }
 
-.menu > li:nth-child(1):before {
-  content: "";
-  padding: 0;
+.menu a:active, .menu a:hover, .menu a:visited, .menu a:link {
+    text-decoration: none;
+}
+
+a:hover {
+	color: black;
 }

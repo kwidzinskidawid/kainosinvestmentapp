@@ -1,18 +1,20 @@
-<div id="chart"></div>
+<div id="chart">
+	<img id="spinner" ng-src="/app/img/ajax-loader.gif" ng-show="loading">
+</div>
 
 <form id="datepickerForm" name="datepickerForm" class="form-inline" role="form">
 	<div class="form-group" ng-class="{'has-error': datepickerForm.fromDate.$invalid}">
 		<label class="control-label"><i class="fa fa-calendar"></i> From </label>
-		<input name="fromDate" type="text" class="form-control" ng-blur="changeDate(datepickerForm.$valid)"
-			ng-model="fromDate" data-min-date="{{minDate}}" data-max-date="{{maxDate}}" placeholder="From" bs-datepicker>
+		<input name="fromDate" type="text" class="form-control" ng-blur="changeDates(datepickerForm.$valid)"
+			ng-model="fromDate" data-min-date="{{minDate}}" data-max-date="{{maxDate}}" placeholder="From" bs-datepicker required>
 	</div>
 	<div class="form-group" ng-class="{'has-error': datepickerForm.toDate.$invalid}">
 		<label class="control-label"><i class="fa fa-calendar"></i> To </label>
-		<input name="toDate" type="text" class="form-control" ng-blur="changeDate(datepickerForm.$valid)"
-			ng-model="toDate" data-max-date="{{maxDate}}" data-min-date="{{minDate}}" placeholder="To" bs-datepicker>
+		<input name="toDate" type="text" class="form-control" ng-blur="changeDates(datepickerForm.$valid)"
+			ng-model="toDate" data-max-date="{{maxDate}}" data-min-date="{{minDate}}" placeholder="To" bs-datepicker required>
 	</div>
 	<p ng-show="datepickerForm.fromDate.$invalid || datepickerForm.toDate.$invalid" 
-	class="error-msg">Incorrect date.</p>
+	class="error-msg">Incorrect date or out of bounds.</p>
 </form>
 
 <form id="investmentForm" name="investmentForm" class="form-inline" role="form">

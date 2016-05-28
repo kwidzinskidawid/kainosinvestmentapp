@@ -5,17 +5,19 @@ invApp
 		var dates = [];
 		var values = [];
 		
+		$scope.loading = true;
+		$scope.fromDate = new Date();
+		$scope.toDate = new Date();
 		
 		var initRates = RateService.query(function() {
 			init(initRates);
 		});
 		
 		
-	
 		$scope.change = function(valid) {
-			var fromDate = $scope.fromDate;
-			var toDate = $scope.toDate;
-			if(valid && fromDate != null && toDate != null) {
+			if (valid) {
+				var fromDate = $scope.fromDate;
+				var toDate = $scope.toDate;
 				if (fromDate < toDate) {
 				    RateService.getRatesInDateRange({from: fromDate, to: toDate}, function (data) {
 				    	init(data);
@@ -48,7 +50,8 @@ invApp
 			    });
 			
 			ChartService.generate(dates, values);
-			if ($scope.fromDate == undefined && $scope.toDate == undefined) {
+			$scope.loading = false;
+			if ($scope.minDate == undefined && $scope.maxDate == undefined) {
 				$scope.fromDate = $scope.minDate = data[0].dateJS;
 				$scope.toDate = $scope.maxDate = data[data.length - 1].dateJS;
 			}

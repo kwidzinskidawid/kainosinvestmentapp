@@ -73,11 +73,15 @@ invApp
 		        };
 			if(rows2 != undefined) {
 				options.series.push({
-		                type: 'area',
-		                name: 'Unit Value',
+		                type: 'line',
+		                name: 'Money in bank deposit',
+		                color: '#52C469',
 		                data: rows2
 		            });
 				options.legend.enabled = true;
+				options.series[0].name = "Money in investment fund";
+				options.title.text = "Comparison of Investment fund and bank deposit's profit over time";
+				options.yAxis.title.text = "Budget (PLN)";
 			}
 			$('#chart').highcharts(options);
 		
