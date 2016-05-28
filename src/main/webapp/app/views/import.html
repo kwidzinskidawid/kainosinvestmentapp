@@ -1,0 +1,23 @@
+<div id="importAuthorizer" ng-hide="authorized">
+	<label>PASSWORD</label>
+	<input type="password" ng-model="password"/>
+	<button type="button" ng-click="authorize()">OK</button>
+</div>
+
+<div id="importWrapper" ng-show="authorized">
+	<form id="uploadFileForm">
+	  <div class="formWrapper">
+		  <label for="upload">Upload your data (.csv):</label>
+		  <input id="upload" type="file" name="uploadfile" accept=".csv" ng-model="ss"/>
+	  </div>
+	  <button id="uploadBtn" type="button" class="btn btn-info" ng-click="upload()">Import data</button>
+	</form>
+	<div ng-show="importing">
+		<span>Please wait while data is being imported. It can take a while.</span>
+		<img id="spinner" ng-src="/app/img/ajax-loader.gif">
+	</div>
+</div>
+
+<div ng-show="msg">
+	<span>{{msg}}</span>
+</div>

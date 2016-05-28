@@ -50,7 +50,9 @@ invApp
 			    });
 			
 			ChartService.generate(dates, values);
-			$scope.loading = false;
+			if($scope.loading == true) {
+				$scope.loading = false;
+			}
 			if ($scope.minDate == undefined && $scope.maxDate == undefined) {
 				$scope.fromDate = $scope.minDate = data[0].dateJS;
 				$scope.toDate = $scope.maxDate = data[data.length - 1].dateJS;

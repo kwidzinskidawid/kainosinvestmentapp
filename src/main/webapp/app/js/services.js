@@ -7,6 +7,16 @@ invApp
 				 url: '/api/rates/range',
 				 isArray: true,
 				 method: 'POST'
+			 },
+			 uploadRates: {
+				 url: '/api/rates/import',
+				 method: 'POST',
+				 transformRequest: angular.identity,
+		         headers: { 'Content-Type': undefined }
+			 },
+			 authorize: {
+				 url: '/api/authorize',
+				 method: 'POST'
 			 }
 		 });
 	});

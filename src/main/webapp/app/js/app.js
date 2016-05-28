@@ -16,7 +16,12 @@ invApp
 	      url: '/compare',
 	      templateUrl: '/app/views/compare.html',
 	      controller: 'CompareCtrl'
-	    });
+	    })
+	     .state('import', {
+		      url: '/import',
+		      templateUrl: '/app/views/import.html',
+		      controller: 'ImportCtrl'
+		    });
   
 	  $urlRouterProvider.otherwise('/');
 }]);

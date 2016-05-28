@@ -10,13 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.domain.Rate;
 
 @Service
 public class CSVReaderImpl implements CSVReader{
 	@Override
-	public List<Rate> readFromFile(String filePath) {
+	public List<Rate> readFromFile(String filePath, MultipartFile uploadfile) throws Exception {
 		List<Rate> result = new ArrayList<Rate>();
 		
 		BufferedReader br = null;
@@ -25,7 +26,13 @@ public class CSVReaderImpl implements CSVReader{
 
 		try {
 
-			br = new BufferedReader(new FileReader(filePath));
+			if (uploadfile == null) {
+				br = new BufferedReader(new FileReader(filePath));
+			} else {
+				java.io.InputStreamReader is = new java.io.InputStreamReader(uploadfile.getInputStream());
+				br = new BufferedReader(is);
+			}
+			
 			br.readLine();
 			while ((line = br.readLine()) != null) {
 
@@ -42,6 +49,7 @@ public class CSVReaderImpl implements CSVReader{
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			throw e;
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {

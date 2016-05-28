@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.domain.Rate;
 import com.example.domain.RateRange;
@@ -19,8 +20,8 @@ public class RateRepositoryImpl implements RateRepository {
 	private RateMapper rateMapper;
 	
 	@Override
-	public void importFromFile(String filePath) {
-		List<Rate> rates = csvReader.readFromFile(filePath);
+	public void importFromFile(String filePath, MultipartFile uploadfile) throws Exception {
+		List<Rate> rates = csvReader.readFromFile(filePath, uploadfile);
 		
 		for (Rate rate : rates) {
 			rateMapper.addRate(rate);
