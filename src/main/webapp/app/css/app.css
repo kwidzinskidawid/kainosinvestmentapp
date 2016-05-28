@@ -6,10 +6,6 @@
 	text-align: center;
 }
 
-#chart {
-	position: relative;
-}
-
 .tableWrapper {
 	width: 600px;
 	display: inline-block;
