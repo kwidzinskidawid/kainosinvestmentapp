@@ -1,1 +1,33 @@
-<p>compare view</p>
+<div id="chart"></div>
+
+<form id="datepickerForm" name="datepickerForm" class="form-inline" role="form">
+	<div class="form-group" ng-class="{'has-error': datepickerForm.fromDate.$invalid}">
+		<label class="control-label"><i class="fa fa-calendar"></i> From </label>
+		<input name="fromDate" type="text" class="form-control" ng-blur="changeDate(datepickerForm.$valid)"
+			ng-model="fromDate" data-min-date="{{minDate}}" data-max-date="{{maxDate}}" placeholder="From" bs-datepicker>
+	</div>
+	<div class="form-group" ng-class="{'has-error': datepickerForm.toDate.$invalid}">
+		<label class="control-label"><i class="fa fa-calendar"></i> To </label>
+		<input name="toDate" type="text" class="form-control" ng-blur="changeDate(datepickerForm.$valid)"
+			ng-model="toDate" data-max-date="{{maxDate}}" data-min-date="{{minDate}}" placeholder="To" bs-datepicker>
+	</div>
+	<p ng-show="datepickerForm.fromDate.$invalid || datepickerForm.toDate.$invalid" 
+	class="error-msg">Incorrect date.</p>
+</form>
+
+<form id="investmentForm" name="investmentForm" class="form-inline" role="form">
+	<div class="form-group" ng-class="{'has-error': investmentForm.investment.$invalid}">
+		<label class="control-label"><i class="fa fa-money"></i> Investment (PLN) </label>
+		<input type="text" name="investment" class="form-control" ng-blur="changeInvestment(investmentForm.$valid)"
+			 ng-model="investment" placeholder="investment" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required>
+	</div>
+	<div class="form-group" ng-class="{'has-error': investmentForm.interest.$invalid}">
+		<label class="control-label"><i class="fa fa-percent"></i> Interest (%) </label>
+		<input type="text" name="interest" class="form-control" ng-blur="changeInvestment(investmentForm.$valid)"
+		 	ng-model="interest" placeholder="interest" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required>
+	</div>
+	<p ng-show="investmentForm.$invalid" 
+	class="error-msg">Incorrect value. Use only numbers and a dot separator. e.g. 5.2</p>
+</form>
+
+<button id="calculateBtn" type="button" class="btn btn-info" ng-click="changeInvestment(investmentForm.$valid)">Calculate</button>

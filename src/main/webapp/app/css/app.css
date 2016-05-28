@@ -15,9 +15,18 @@
 	margin-top: 40px;
 }
 
+.error-msg {
+	color: red;
+}
 #datepickerForm input {
 	cursor: pointer;
+}
+#datepickerForm input, #investmentForm input{
 	margin-right: 10px;
+}
+
+#calculateBtn {
+	margin: 20px;
 }
 	
 .menu {

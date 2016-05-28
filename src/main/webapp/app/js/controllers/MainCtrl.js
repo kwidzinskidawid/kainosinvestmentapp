@@ -12,10 +12,20 @@ invApp
 		
 		
 	
-		$scope.change = function() {
-		    RateService.getRatesInDateRange({from: $scope.fromDate, to: $scope.toDate}, function (data) {
-		    	init(data);
-		    });
+		$scope.change = function(valid) {
+			var fromDate = $scope.fromDate;
+			var toDate = $scope.toDate;
+			if(valid && fromDate != null && toDate != null) {
+				if (fromDate < toDate) {
+				    RateService.getRatesInDateRange({from: fromDate, to: toDate}, function (data) {
+				    	init(data);
+				    });
+				} else {
+					RateService.getRatesInDateRange({from: toDate, to: fromDate}, function (data) {
+				    	init(data.reverse());
+				    });
+				}
+			}
 		}
 		
 		var init = function(data) {
@@ -28,7 +38,7 @@ invApp
 				dates.push(rate.date);
 				values.push(rate.value);
 			});
-			console.log(data);
+			
 			$scope.tableParams = new NgTableParams({
 			      page: 1, 
 			      count: 10 

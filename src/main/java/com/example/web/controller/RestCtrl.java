@@ -24,7 +24,6 @@ public class RestCtrl {
 	@RequestMapping(value = "/rates", method = RequestMethod.GET)
 	public ResponseEntity<List<Rate>> getRates(){
 		List<Rate> rates = rateRepository.getAllRates();
-		System.out.println(rates.get(0).getDate());
 		return new ResponseEntity<List<Rate>>(rates, HttpStatus.OK);
 	}
 	

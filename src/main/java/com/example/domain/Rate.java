@@ -2,16 +2,11 @@ package com.example.domain;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 
 public class Rate {
 
 	private Integer id;
-	 
-	
 	private Date date;
-	
 	private float value;
 	
 	public Rate() {
