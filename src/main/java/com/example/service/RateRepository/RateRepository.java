@@ -8,7 +8,7 @@ import com.example.domain.Rate;
 import com.example.domain.RateRange;
 
 public interface RateRepository {
-	public void importFromFile(String filePath, MultipartFile uploadfile) throws Exception;
+	public void importFromFile(MultipartFile uploadfile) throws Exception;
 	public void addRate(Rate rate);
 	public List<Rate> getAllRates();
 	public void deleteAllRates();

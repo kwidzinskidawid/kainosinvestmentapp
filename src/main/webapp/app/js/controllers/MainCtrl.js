@@ -31,6 +31,10 @@ invApp
 		}
 		
 		var init = function(data) {
+			if (data.length == 0) {
+				$scope.dbEmpty = true;
+				return;
+			}
 			dates = [];
 			values = [];
 			

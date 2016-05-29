@@ -7,5 +7,5 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.domain.Rate;
 
 public interface CSVReader {
-	public List<Rate> readFromFile(String filePath, MultipartFile uploadfile) throws Exception;
+	public List<Rate> readFromFile(MultipartFile uploadfile) throws Exception;
 }

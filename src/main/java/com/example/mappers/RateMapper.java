@@ -11,6 +11,7 @@ import com.example.domain.Rate;
 @Mapper
 public interface RateMapper {
 	public void addRate(Rate rate);
+	public void addRateList(List<Rate> rates);
 	public List<Rate> getAllRates();
 	public void deleteAllRates();
 	public List<Rate> getAllRatesInDateRange(@Param("from")Date from, @Param("to")Date to);

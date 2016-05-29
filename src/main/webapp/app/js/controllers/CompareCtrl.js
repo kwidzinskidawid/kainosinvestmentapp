@@ -40,6 +40,10 @@ invApp
 		}
 		
 		var init = function(data) {
+			if (data.length == 0) {
+				$scope.dbEmpty = true;
+				return;
+			}
 			dates = [];
 			values = [];
 			
@@ -57,7 +61,7 @@ invApp
 		};
 		
 		var calculate = function(valid) {
-			if(valid) {
+			if(valid && !$scope.dbEmpty) {
 				var investment = parseFloat($scope.investment);
 				var interest = parseFloat($scope.interest);
 				unitsBought = investment / values[0];

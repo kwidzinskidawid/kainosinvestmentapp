@@ -1,7 +1,9 @@
 
-<div id="chart">
+<div id="chart" ng-hide="dbEmpty">
 	<img id="spinner" ng-src="/app/img/ajax-loader.gif" ng-show="loading">
 </div>
+
+<span ng-show="dbEmpty">Database empty. Please upload data.</span>
 
 <form id="datepickerForm" name="datepickerForm" class="form-inline" role="form">
 	<div class="form-group" ng-class="{'has-error': datepickerForm.fromDate.$invalid}">

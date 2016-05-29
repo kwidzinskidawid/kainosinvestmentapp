@@ -24,6 +24,14 @@
         delete from rate
     </delete>
  
+	 <insert id="addRateList" parameterType="java.util.List">
+        insert into rate(date, value)
+        values
+        <foreach collection="list" item="item" separator=" , ">
+            (#{item.date}, #{item.value})
+        </foreach>
+	</insert>
+	
     <insert id="addRate" parameterType="Rate" useGeneratedKeys="true" keyProperty="id">
         insert into rate(date,value) values(#{date},#{value})
     </insert>

@@ -2,7 +2,6 @@ package com.example.service.CSVReader;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,7 +16,7 @@ import com.example.domain.Rate;
 @Service
 public class CSVReaderImpl implements CSVReader{
 	@Override
-	public List<Rate> readFromFile(String filePath, MultipartFile uploadfile) throws Exception {
+	public List<Rate> readFromFile(MultipartFile uploadfile) throws Exception {
 		List<Rate> result = new ArrayList<Rate>();
 		
 		BufferedReader br = null;
@@ -25,13 +24,8 @@ public class CSVReaderImpl implements CSVReader{
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 
 		try {
-
-			if (uploadfile == null) {
-				br = new BufferedReader(new FileReader(filePath));
-			} else {
-				java.io.InputStreamReader is = new java.io.InputStreamReader(uploadfile.getInputStream());
-				br = new BufferedReader(is);
-			}
+			java.io.InputStreamReader is = new java.io.InputStreamReader(uploadfile.getInputStream());
+			br = new BufferedReader(is);
 			
 			br.readLine();
 			while ((line = br.readLine()) != null) {

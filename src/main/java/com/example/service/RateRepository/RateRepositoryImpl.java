@@ -20,12 +20,10 @@ public class RateRepositoryImpl implements RateRepository {
 	private RateMapper rateMapper;
 	
 	@Override
-	public void importFromFile(String filePath, MultipartFile uploadfile) throws Exception {
-		List<Rate> rates = csvReader.readFromFile(filePath, uploadfile);
+	public void importFromFile(MultipartFile uploadfile) throws Exception {
+		List<Rate> rates = csvReader.readFromFile(uploadfile);
 		
-		for (Rate rate : rates) {
-			rateMapper.addRate(rate);
-		}
+		rateMapper.addRateList(rates);
 	}
 
 	@Override

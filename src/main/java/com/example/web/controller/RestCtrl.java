@@ -26,10 +26,10 @@ public class RestCtrl {
 	
 	@RequestMapping(value = "/authorize", method = RequestMethod.POST)
 	public ResponseEntity<?> authorize(@RequestBody String pass){
-		if (pass == "######") {
+		if (pass == "XXXXXXX") {
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 	}
 
@@ -45,25 +45,15 @@ public class RestCtrl {
 		return new ResponseEntity<List<Rate>>(rates, HttpStatus.OK);
 	}
 
-	@RequestMapping("/localimport")
-	public void importRates() {
-		rateRepository.deleteAllRates();
-        try {
-			rateRepository.importFromFile("/Users/Dave/workspace/InvestmentFund/src/main/resources/data.csv", null);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-        System.out.println("Import completed.");
-	}
 	
 	@RequestMapping(value = "/rates/import", method = RequestMethod.POST)
 	public ResponseEntity<?> importRatesFromFile(@RequestParam("uploadfile") MultipartFile uploadfile) {
 		rateRepository.deleteAllRates();
         try {
-			rateRepository.importFromFile(null, uploadfile);
+			rateRepository.importFromFile(uploadfile);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}
         System.out.println("Import completed.");
         
